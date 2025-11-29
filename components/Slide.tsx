@@ -307,95 +307,71 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
     </div>
   );
 
-  // 6. INTERACTION: Pop Quiz / Interrupt Style
+  // 6. INTERACTION: Full-screen Question with Image Background
   const renderInteraction = () => {
-    // Parse content
-    // Index 0: Header Prompt (e.g. "QUESTION:")
-    // Index 1: The Question text (usually in quotes)
-    // Index 2+: Options (if any)
-    const prompt = data.content[0];
-    const question = data.content[1];
-    const options = data.content.slice(2);
-
+    // Parse content based on what we have
+    const allContent = data.content;
+    
     return (
-      <div className="flex items-center justify-center h-full w-full relative z-20 px-4">
-         {/* Background Pulse Effect */}
-         <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-             <motion.div 
-               animate={{ scale: [0.8, 1.2], opacity: [0.1, 0] }}
-               transition={{ duration: 2, repeat: Infinity }}
-               className={`w-[500px] h-[500px] rounded-full blur-3xl ${data.accent === 'amber' ? 'bg-neon-amber/20' : 'bg-neon-cyan/20'}`}
-             />
-         </div>
+      <div className="flex items-center justify-center h-full w-full relative z-20 px-4 sm:px-6">
+         {/* Background Image with Dark Overlay */}
+         {data.image && (
+             <div className="absolute inset-0 z-0">
+                 <img src={data.image} className="w-full h-full object-cover" alt="" />
+                 {/* Multiple gradient overlays for readability */}
+                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70" />
+                 <div className="absolute inset-0 bg-radial-at-center from-transparent to-black/60" />
+             </div>
+         )}
 
+         {/* Content Container */}
          <motion.div 
-           initial={{ scale: 0.8, opacity: 0 }}
+           initial={{ scale: 0.9, opacity: 0 }}
            animate={{ scale: 1, opacity: 1 }}
-           transition={{ type: "spring", stiffness: 120, damping: 15 }}
-           className={`relative w-full max-w-5xl bg-black/90 backdrop-blur-xl border-2 ${getTailwindColor().split(' ')[1]} shadow-[0_0_50px_rgba(255,184,0,0.15)] rounded-lg overflow-hidden`}
+           transition={{ type: "spring", stiffness: 100, damping: 20 }}
+           className="relative w-full max-w-4xl z-10 text-center"
          >
-             {/* Hazard Header */}
-             <div className={`w-full py-3 px-6 ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'} text-black font-display font-bold tracking-widest uppercase flex items-center justify-between`}>
-                 <div className="flex items-center gap-2">
-                    <AlertTriangle size={24} className="stroke-2" />
-                    <span>{data.subtitle || "INTERACTION_REQUIRED"}</span>
-                 </div>
-                 <div className="hidden md:flex gap-1">
-                     {[...Array(6)].map((_, i) => (
-                         <div key={i} className="w-1 h-6 bg-black/20 -skew-x-12" />
-                     ))}
-                 </div>
-             </div>
+             {/* Subtitle/Accent */}
+             <motion.div 
+               initial={{ opacity: 0, y: -20 }} 
+               animate={{ opacity: 1, y: 0 }} 
+               transition={{ delay: 0.2 }}
+               className={`font-mono text-xs sm:text-sm mb-6 sm:mb-8 tracking-[0.2em] uppercase ${getTailwindColor().split(' ')[0]}`}
+             >
+               {data.subtitle}
+             </motion.div>
 
-             {/* Main Content Body */}
-             <div className="p-8 md:p-12 text-center relative">
-                 {/* Decorative Grid */}
-                 <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-
-                 <motion.p 
-                   initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                   className={`font-mono text-sm md:text-base mb-6 ${getTailwindColor().split(' ')[0]} uppercase tracking-[0.2em]`}
-                 >
-                   {prompt}
-                 </motion.p>
-
-                 <motion.h1 
-                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-                   className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-medium mb-12 leading-tight"
-                 >
-                   {question}
-                 </motion.h1>
-
-                 {/* Options Grid (if available) */}
-                 {options.length > 0 && (
-                     <div className={`grid grid-cols-1 ${options.length > 1 ? 'md:grid-cols-2' : ''} gap-6 max-w-4xl mx-auto`}>
-                         {options.map((opt, i) => (
-                             <motion.div
-                               key={i}
-                               initial={{ opacity: 0, x: -20 }}
-                               animate={{ opacity: 1, x: 0 }}
-                               transition={{ delay: 0.8 + (i * 0.1) }}
-                               className={`border border-slate-700 bg-slate-800/50 p-6 rounded text-left hover:${data.accent === 'amber' ? 'border-neon-amber' : 'border-neon-cyan'} transition-colors cursor-default group`}
-                             >
-                                 <p className="font-sans text-lg md:text-xl text-slate-200 group-hover:text-white">
-                                     {opt.replace(/^>>\s*|\[.*?\]:?\s*/g, '')}
-                                 </p>
-                             </motion.div>
-                         ))}
-                     </div>
-                 )}
-                 
-                 {/* Footer Prompt */}
-                 {options.length === 0 && (
-                     <motion.div 
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
-                        className="flex items-center justify-center gap-2 mt-8 text-slate-500 font-mono text-xs"
+             {/* Main Question/Content */}
+             <div className="space-y-6 sm:space-y-8">
+                 {allContent.map((item, i) => (
+                     <motion.div
+                       key={i}
+                       initial={{ opacity: 0, y: 20 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       transition={{ delay: 0.3 + (i * 0.15) }}
+                       className="relative"
                      >
-                         <Users size={14} />
-                         <span>AWAITING AUDIENCE RESPONSE...</span>
+                         <p className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-tight drop-shadow-lg">
+                             {item}
+                         </p>
                      </motion.div>
-                 )}
+                 ))}
              </div>
+
+             {/* Pulse Indicator */}
+             <motion.div 
+               initial={{ opacity: 0 }} 
+               animate={{ opacity: 1 }} 
+               transition={{ delay: 0.8 }}
+               className="mt-12 sm:mt-16 flex items-center justify-center gap-2 text-slate-300 font-mono text-xs sm:text-sm"
+             >
+                 <motion.div 
+                   animate={{ scale: [1, 1.2, 1] }} 
+                   transition={{ duration: 2, repeat: Infinity }}
+                   className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'}`}
+                 />
+                 <span>AWAITING AUDIENCE RESPONSE...</span>
+             </motion.div>
          </motion.div>
       </div>
     );
