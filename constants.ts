@@ -31,8 +31,7 @@ export const PRESENTATION_DATA: SlideData[] = [
     title: "THE HONESTY QUESTION",
     subtitle: "Let's Be Real",
     content: [
-      "Be honest—and I promise I won't tell your teachers—but has anyone here ever copied an answer from ChatGPT and pasted it straight into an assignment... without even reading it first?",
-      "This question reveals a truth about how AI is being used today, for better or worse."
+      "Has anyone here ever copied an answer from ChatGPT and pasted it straight into an assignment... without even reading it first?"
     ],
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1920&auto=format&fit=crop",
     layout: 'interaction',
@@ -72,8 +71,7 @@ export const PRESENTATION_DATA: SlideData[] = [
     title: "THE DUOLINGO QUESTION",
     subtitle: "A Quick Reality Check",
     content: [
-      "Has anyone here ever felt genuinely guilty or panicked just because you forgot to study one day and lost your streak on Duolingo?",
-      "This shows how gamification can motivate us—for better or worse."
+      "Has anyone here ever felt genuinely guilty or panicked because you lost your streak on Duolingo?"
     ],
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1920&auto=format&fit=crop",
     layout: 'interaction',
@@ -99,8 +97,7 @@ export const PRESENTATION_DATA: SlideData[] = [
     title: "THE CONFIDENCE FACTOR",
     subtitle: "Why AI Creates Psychological Safety",
     content: [
-      "Have you ever sat in class, completely confused, but too afraid to raise your hand because you didn't want to look 'stupid'... yet when you get home, you have no problem asking ChatGPT ten questions in a row?",
-      "This difference matters. AI removes the fear of judgment."
+      "Have you ever sat in class too afraid to ask questions, but have no problem asking ChatGPT ten questions in a row?"
     ],
     image: "https://images.unsplash.com/photo-1504253163759-c23f7d9d6e0d?q=80&w=1920&auto=format&fit=crop",
     layout: 'interaction',
@@ -124,10 +121,9 @@ export const PRESENTATION_DATA: SlideData[] = [
     title: "THE KEY QUESTION",
     subtitle: "What Skills Matter Most?",
     content: [
-      "In this new AI era, which skill matters more?",
       "Option A: The ability to answer every question correctly.",
       "Option B: The ability to ask the right questions.",
-      "The answer reveals where education is heading."
+      "Which one matters more in the AI era?"
     ],
     image: "https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=1920&auto=format&fit=crop",
     layout: 'interaction',
@@ -152,10 +148,9 @@ export const PRESENTATION_DATA: SlideData[] = [
     title: "THE ULTIMATE CHOICE",
     subtitle: "A Thought Experiment",
     content: [
-      "If you had to choose a tutor for the next month, who would you pick?",
-      "Option 1: An all-knowing AI that is available 24/7 but has zero emotion.",
-      "Option 2: A passionate human teacher who is only free for one hour a week.",
-      "Your answer reveals what education needs most."
+      "Option 1: AI tutor available 24/7 but has zero emotion.",
+      "Option 2: Passionate human teacher free only one hour a week.",
+      "Who would you choose?"
     ],
     image: "https://images.unsplash.com/photo-1616161560417-66d4db589379?q=80&w=1920&auto=format&fit=crop",
     layout: 'interaction',
