@@ -77,14 +77,14 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 rounded-full blur-3xl -z-10" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] md:w-[800px] md:h-[800px] bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 rounded-full blur-3xl -z-10" 
       />
 
       <motion.div 
         variants={titleVariants}
         initial="hidden"
         animate="visible"
-        className={`font-mono text-xs sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.5em] mb-3 sm:mb-6 uppercase ${getTailwindColor().split(' ')[0]} bg-black/40 backdrop-blur-sm px-3 sm:px-4 py-1 rounded`}
+        className={`font-mono text-xs sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.5em] mb-4 sm:mb-8 uppercase ${getTailwindColor().split(' ')[0]} bg-black/40 backdrop-blur-sm px-3 sm:px-4 py-1 rounded`}
       >
         [{data.subtitle}]
       </motion.div>
@@ -93,7 +93,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
         initial={{ scale: 0.8, opacity: 0, filter: 'blur(10px)' }}
         animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="font-display text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white mb-4 sm:mb-8 leading-tight tracking-tight relative z-20"
+        className="font-display text-3xl sm:text-5xl md:text-8xl font-black uppercase text-white mb-6 sm:mb-12 leading-tight tracking-tight relative z-20"
         style={{ textShadow: `0 0 50px ${getAccentColor(0.5)}` }}
       >
         {data.title}
@@ -101,9 +101,9 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
         <span className={`absolute -left-8 top-0 h-full w-1 ${getTailwindColor().split(' ')[1].replace('border', 'bg')}`} />
       </motion.h1>
 
-      <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-2 sm:space-y-3 bg-black/30 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-white/5 inline-block">
+      <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-2 sm:space-y-4 bg-black/30 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/5 inline-block">
          {data.content.map((item, i) => (
-             <motion.p key={i} variants={itemVariants} className="font-sans text-xs sm:text-base md:text-lg text-slate-100 font-light max-w-2xl mx-auto drop-shadow-md">
+             <motion.p key={i} variants={itemVariants} className="font-sans text-sm sm:text-lg md:text-2xl text-slate-100 font-light max-w-2xl mx-auto drop-shadow-md">
                  {item}
              </motion.p>
          ))}
@@ -216,32 +216,34 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
 
     // 4. FOCUS: Minimalist, heavy typography, background image heavy
   const renderFocus = () => (
-      <div className="w-full h-full flex flex-col justify-center px-6 sm:px-12 md:px-20 relative overflow-hidden">
+      <div className="w-full h-full flex flex-col justify-center px-8 md:px-24 relative overflow-hidden">
            {/* Background Image - Improved Visibility */}
            {data.image && (
                <>
                 <div className="absolute inset-0 z-0">
-                    <img src={data.image} className="w-full h-full object-cover opacity-30" alt="" />
+                    <img src={data.image} className="w-full h-full object-cover opacity-40" alt="" />
                     {/* Gradient Overlay to ensure text readability */}
                     <div className="absolute inset-0 bg-gradient-to-r from-void via-void/80 to-transparent" />
                 </div>
                </>
            )}
 
-           <motion.div variants={titleVariants} initial="hidden" animate="visible" className="z-10 max-w-3xl relative">
-               <h2 className="font-mono text-xs sm:text-sm text-neon-cyan mb-3 sm:mb-4 tracking-[0.2em] flex items-center gap-2 font-bold">
+           <motion.div variants={titleVariants} initial="hidden" animate="visible" className="z-10 max-w-4xl relative">
+               <h2 className="font-mono text-sm text-neon-cyan mb-4 tracking-[0.2em] flex items-center gap-2 font-bold">
                    <Globe size={14} />
                    {data.subtitle}
                </h2>
-               <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-black text-white uppercase mb-8 sm:mb-12 leading-tight drop-shadow-2xl">
-                   {data.title}
+               <h1 className="font-display text-6xl md:text-8xl font-black text-white uppercase mb-12 leading-[0.9] drop-shadow-2xl">
+                   {data.title.split(' ').map((word, i) => (
+                       <span key={i} className="block">{word}</span>
+                   ))}
                </h1>
            </motion.div>
 
-           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="z-10 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 max-w-3xl bg-black/40 backdrop-blur-sm p-4 sm:p-6 rounded-lg border-l-4 border-neon-cyan">
+           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="z-10 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 max-w-5xl bg-black/40 backdrop-blur-sm p-4 sm:p-6 rounded-lg border-l-4 border-neon-cyan">
                {data.content.map((item, i) => (
                    <motion.div key={i} variants={itemVariants} className="pl-2 py-2">
-                       <p className="font-sans text-xs sm:text-sm md:text-base text-slate-100 font-medium leading-snug">
+                       <p className="font-sans text-sm sm:text-base md:text-lg text-slate-100 font-medium leading-snug">
                            {item}
                        </p>
                    </motion.div>
@@ -305,71 +307,168 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
     </div>
   );
 
-  // 6. INTERACTION: Full-screen Question with Image Background
-  const renderInteraction = () => {
-    // Parse content based on what we have
-    const allContent = data.content;
+  // 6. POLL: Multiple choice question with formatted options
+  const renderPoll = () => {
+    // For poll layout, all items can be options, last one can be main question
+    // Structure: options + question at end
+    if (data.content.length === 0) return null;
     
+    // Last item is the question
+    const question = data.content[data.content.length - 1];
+    // Everything else are options
+    const options = data.content.slice(0, data.content.length - 1);
+
     return (
-      <div className="flex items-center justify-center h-full w-full relative z-20 px-4 sm:px-6">
-         {/* Background Image with Dark Overlay */}
-         {data.image && (
-             <div className="absolute inset-0 z-0">
-                 <img src={data.image} className="w-full h-full object-cover" alt="" />
-                 {/* Multiple gradient overlays for readability */}
-                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70" />
-                 <div className="absolute inset-0 bg-radial-at-center from-transparent to-black/60" />
-             </div>
-         )}
+      <div className="flex items-center justify-center h-full w-full relative z-20 px-4">
+         {/* Background Pulse Effect */}
+         <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+             <motion.div 
+               animate={{ scale: [0.8, 1.2], opacity: [0.1, 0] }}
+               transition={{ duration: 2, repeat: Infinity }}
+               className={`w-[500px] h-[500px] rounded-full blur-3xl ${data.accent === 'amber' ? 'bg-neon-amber/20' : 'bg-neon-cyan/20'}`}
+             />
+         </div>
 
-         {/* Content Container */}
          <motion.div 
-           initial={{ scale: 0.9, opacity: 0 }}
+           initial={{ scale: 0.8, opacity: 0 }}
            animate={{ scale: 1, opacity: 1 }}
-           transition={{ type: "spring", stiffness: 100, damping: 20 }}
-           className="relative w-full max-w-4xl z-10 text-center"
+           transition={{ type: "spring", stiffness: 120, damping: 15 }}
+           className={`relative w-full max-w-4xl bg-black/90 backdrop-blur-xl border-2 ${getTailwindColor().split(' ')[1]} shadow-[0_0_50px_rgba(255,184,0,0.15)] rounded-lg overflow-hidden`}
          >
-             {/* Subtitle/Accent */}
-             <motion.div 
-               initial={{ opacity: 0, y: -20 }} 
-               animate={{ opacity: 1, y: 0 }} 
-               transition={{ delay: 0.2 }}
-               className={`font-mono text-xs sm:text-sm mb-4 sm:mb-6 tracking-[0.2em] uppercase ${getTailwindColor().split(' ')[0]}`}
-             >
-               {data.subtitle}
-             </motion.div>
-
-             {/* Main Question/Content */}
-             <div className="space-y-3 sm:space-y-4">
-                 {allContent.map((item, i) => (
-                     <motion.div
-                       key={i}
-                       initial={{ opacity: 0, y: 20 }}
-                       animate={{ opacity: 1, y: 0 }}
-                       transition={{ delay: 0.3 + (i * 0.15) }}
-                       className="relative"
-                     >
-                         <p className="font-display text-lg sm:text-3xl md:text-4xl lg:text-5xl text-white font-bold leading-tight drop-shadow-lg">
-                             {item}
-                         </p>
-                     </motion.div>
-                 ))}
+             {/* Header */}
+             <div className={`w-full py-4 px-6 ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'} text-black font-display font-bold tracking-widest uppercase flex items-center justify-between`}>
+                 <div className="flex items-center gap-2">
+                    <HelpCircle size={24} className="stroke-2" />
+                    <span>{data.title}</span>
+                 </div>
              </div>
 
-             {/* Pulse Indicator */}
+             {/* Main Content */}
+             <div className="p-8 md:p-12 text-center relative">
+                 {/* Decorative Grid */}
+                 <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+
+                 {/* Options Grid */}
+                 <div className={`grid grid-cols-1 ${options.length > 1 ? 'md:grid-cols-2' : ''} gap-4 md:gap-6 max-w-3xl mx-auto mb-8`}>
+                     {options.map((opt, i) => (
+                         <motion.div
+                           key={i}
+                           initial={{ opacity: 0, y: 20 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           transition={{ delay: 0.3 + (i * 0.15) }}
+                           className={`border-2 ${getTailwindColor().split(' ')[1].replace('text', 'border')} bg-slate-900/60 p-6 md:p-8 rounded-lg text-left hover:bg-slate-800 transition-all cursor-default group`}
+                         >
+                             <p className="font-sans text-base md:text-xl text-slate-100 group-hover:text-white leading-relaxed">
+                                 {opt}
+                             </p>
+                         </motion.div>
+                     ))}
+                 </div>
+
+                 {/* Question at bottom */}
+                 <motion.h2 
+                   initial={{ opacity: 0, y: 10 }} 
+                   animate={{ opacity: 1, y: 0 }} 
+                   transition={{ delay: 0.7 }}
+                   className={`font-display text-2xl md:text-4xl font-bold ${getTailwindColor().split(' ')[0]} mt-8 pt-6 border-t border-slate-700`}
+                 >
+                   {question}
+                 </motion.h2>
+             </div>
+         </motion.div>
+      </div>
+    );
+  };
+
+  // 7. INTERACTION: Pop Quiz / Interrupt Style
+  const renderInteraction = () => {
+    // Parse content
+    // Index 0: Header Prompt (e.g. "QUESTION:")
+    // Index 1: The Question text (usually in quotes)
+    // Index 2+: Options (if any)
+    const prompt = data.content[0];
+    const question = data.content[1];
+    const options = data.content.slice(2);
+
+    return (
+      <div className="flex items-center justify-center h-full w-full relative z-20 px-4">
+         {/* Background Pulse Effect */}
+         <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
              <motion.div 
-               initial={{ opacity: 0 }} 
-               animate={{ opacity: 1 }} 
-               transition={{ delay: 0.8 }}
-               className="mt-8 sm:mt-12 flex items-center justify-center gap-2 text-slate-300 font-mono text-xs sm:text-sm"
-             >
-                 <motion.div 
-                   animate={{ scale: [1, 1.2, 1] }} 
-                   transition={{ duration: 2, repeat: Infinity }}
-                   className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'}`}
-                 />
-                 <span>AWAITING AUDIENCE RESPONSE...</span>
-             </motion.div>
+               animate={{ scale: [0.8, 1.2], opacity: [0.1, 0] }}
+               transition={{ duration: 2, repeat: Infinity }}
+               className={`w-[500px] h-[500px] rounded-full blur-3xl ${data.accent === 'amber' ? 'bg-neon-amber/20' : 'bg-neon-cyan/20'}`}
+             />
+         </div>
+
+         <motion.div 
+           initial={{ scale: 0.8, opacity: 0 }}
+           animate={{ scale: 1, opacity: 1 }}
+           transition={{ type: "spring", stiffness: 120, damping: 15 }}
+           className={`relative w-full max-w-5xl bg-black/90 backdrop-blur-xl border-2 ${getTailwindColor().split(' ')[1]} shadow-[0_0_50px_rgba(255,184,0,0.15)] rounded-lg overflow-hidden`}
+         >
+             {/* Hazard Header */}
+             <div className={`w-full py-3 px-6 ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'} text-black font-display font-bold tracking-widest uppercase flex items-center justify-between`}>
+                 <div className="flex items-center gap-2">
+                    <AlertTriangle size={24} className="stroke-2" />
+                    <span>{data.subtitle || "INTERACTION_REQUIRED"}</span>
+                 </div>
+                 <div className="hidden md:flex gap-1">
+                     {[...Array(6)].map((_, i) => (
+                         <div key={i} className="w-1 h-6 bg-black/20 -skew-x-12" />
+                     ))}
+                 </div>
+             </div>
+
+             {/* Main Content Body */}
+             <div className="p-8 md:p-12 text-center relative">
+                 {/* Decorative Grid */}
+                 <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+
+                 <motion.p 
+                   initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+                   className={`font-mono text-sm md:text-base mb-6 ${getTailwindColor().split(' ')[0]} uppercase tracking-[0.2em]`}
+                 >
+                   {prompt}
+                 </motion.p>
+
+                 <motion.h1 
+                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+                   className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-medium mb-12 leading-tight"
+                 >
+                   {question}
+                 </motion.h1>
+
+                 {/* Options Grid (if available) */}
+                 {options.length > 0 && (
+                     <div className={`grid grid-cols-1 ${options.length > 1 ? 'md:grid-cols-2' : ''} gap-6 max-w-4xl mx-auto`}>
+                         {options.map((opt, i) => (
+                             <motion.div
+                               key={i}
+                               initial={{ opacity: 0, x: -20 }}
+                               animate={{ opacity: 1, x: 0 }}
+                               transition={{ delay: 0.8 + (i * 0.1) }}
+                               className={`border border-slate-700 bg-slate-800/50 p-6 rounded text-left hover:${data.accent === 'amber' ? 'border-neon-amber' : 'border-neon-cyan'} transition-colors cursor-default group`}
+                             >
+                                 <p className="font-sans text-lg md:text-xl text-slate-200 group-hover:text-white">
+                                     {opt.replace(/^>>\s*|\[.*?\]:?\s*/g, '')}
+                                 </p>
+                             </motion.div>
+                         ))}
+                     </div>
+                 )}
+                 
+                 {/* Footer Prompt */}
+                 {options.length === 0 && (
+                     <motion.div 
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
+                        className="flex items-center justify-center gap-2 mt-8 text-slate-500 font-mono text-xs"
+                     >
+                         <Users size={14} />
+                         <span>AWAITING AUDIENCE RESPONSE...</span>
+                     </motion.div>
+                 )}
+             </div>
          </motion.div>
       </div>
     );
@@ -398,6 +497,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
       {data.layout === 'hologram' && renderHologram()}
       {data.layout === 'focus' && renderFocus()}
       {data.layout === 'terminal' && renderTerminal()}
+      {data.layout === 'poll' && renderPoll()}
       {data.layout === 'interaction' && renderInteraction()}
     </div>
   );

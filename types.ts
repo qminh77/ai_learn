@@ -1,5 +1,5 @@
 
-export type LayoutType = 'hero' | 'data-grid' | 'hologram' | 'focus' | 'terminal' | 'interaction';
+export type LayoutType = 'hero' | 'data-grid' | 'hologram' | 'focus' | 'terminal' | 'poll' | 'interaction';
 
 export interface SlideData {
   id: number;
