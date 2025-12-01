@@ -361,6 +361,16 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
            transition={{ type: "spring", stiffness: 120, damping: 15 }}
            className={`relative w-full max-w-4xl bg-black/90 backdrop-blur-xl border-2 ${getTailwindColor().split(' ')[1]} shadow-[0_0_50px_rgba(255,184,0,0.15)] rounded-lg overflow-hidden`}
          >
+            {/* Gift icon (corner) - visible on mapped question slides */}
+            {qrForThis && (
+              <button
+                onClick={() => { incrementGiftCount(rewardIndexForSlide); openGift(qrForThis); }}
+                className="absolute top-4 right-4 bg-black/60 p-2 rounded-full border border-slate-700 hover:scale-110 transform transition z-30"
+                aria-label="Open gift"
+              >
+                <img src="https://images.unsplash.com/photo-1606813902776-0a6ad9f1d8b7?q=80&w=80&auto=format&fit=crop" alt="gift" className="w-6 h-6 object-cover rounded" />
+              </button>
+            )}
              {/* Header */}
              <div className={`w-full py-4 px-6 ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'} text-black font-display font-bold tracking-widest uppercase flex items-center justify-between`}>
                  <div className="flex items-center gap-2">
@@ -392,12 +402,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
                      ))}
                  </div>
 
-                 {/* If this slide has a reward mapped, show a gift button after answering */}
-                 {qrForThis && answeredMap[data.id] && (
-                   <div className="mt-6 flex items-center justify-center">
-                     <button onClick={() => { incrementGiftCount(rewardIndexForSlide); openGift(qrForThis); }} className="bg-neon-cyan text-black px-4 py-2 rounded font-bold">Open your gift</button>
-                   </div>
-                 )}
+                {/* removed center gift button — corner gift icon now always visible on mapped slides */}
 
                  {/* Question at bottom */}
                  <motion.h2 
@@ -447,6 +452,16 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
            transition={{ type: "spring", stiffness: 120, damping: 15 }}
            className={`relative w-full max-w-5xl bg-black/90 backdrop-blur-xl border-2 ${getTailwindColor().split(' ')[1]} shadow-[0_0_50px_rgba(255,184,0,0.15)] rounded-lg overflow-hidden`}
          >
+            {/* Gift icon (corner) - visible on mapped question slides */}
+            {qrForThis && (
+              <button
+                onClick={() => { incrementGiftCount(rewardIndexForSlide); openGift(qrForThis); }}
+                className="absolute top-4 right-4 bg-black/60 p-2 rounded-full border border-slate-700 hover:scale-110 transform transition z-30"
+                aria-label="Open gift"
+              >
+                <img src="https://images.unsplash.com/photo-1606813902776-0a6ad9f1d8b7?q=80&w=80&auto=format&fit=crop" alt="gift" className="w-6 h-6 object-cover rounded" />
+              </button>
+            )}
              {/* Hazard Header */}
              <div className={`w-full py-3 px-6 ${data.accent === 'amber' ? 'bg-neon-amber' : 'bg-neon-cyan'} text-black font-display font-bold tracking-widest uppercase flex items-center justify-between`}>
                  <div className="flex items-center gap-2">
@@ -499,11 +514,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
                      </div>
                  )}
                  
-                 {qrForThis && answeredMap[data.id] && (
-                   <div className="mt-6 flex items-center justify-center">
-                     <button onClick={() => { incrementGiftCount(rewardIndexForSlide); openGift(qrForThis); }} className="bg-neon-cyan text-black px-4 py-2 rounded font-bold">Open your gift</button>
-                   </div>
-                 )}
+                {/* center gift button removed — corner icon handles gift opening */}
                  
                  {/* Footer Prompt */}
                  {options.length === 0 && (
