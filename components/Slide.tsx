@@ -93,7 +93,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
         initial={{ scale: 0.8, opacity: 0, filter: 'blur(10px)' }}
         animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="font-display text-3xl sm:text-5xl md:text-8xl font-black uppercase text-white mb-6 sm:mb-12 leading-tight tracking-tight relative z-20"
+        className="font-display text-4xl sm:text-6xl md:text-6xl font-black uppercase text-white mb-6 sm:mb-12 leading-tight tracking-tight relative z-20"
         style={{ textShadow: `0 0 50px ${getAccentColor(0.5)}` }}
       >
         {data.title}
@@ -103,10 +103,10 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
 
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-2 sm:space-y-4 bg-black/30 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/5 inline-block">
          {data.content.map((item, i) => (
-             <motion.p key={i} variants={itemVariants} className="font-sans text-sm sm:text-lg md:text-2xl text-slate-100 font-light max-w-2xl mx-auto drop-shadow-md">
-                 {item}
-             </motion.p>
-         ))}
+         <motion.p key={i} variants={itemVariants} className="font-sans text-base sm:text-lg md:text-xl text-slate-100 font-light max-w-2xl mx-auto drop-shadow-md">
+           {item}
+         </motion.p>
+       ))}
       </motion.div>
     </div>
   );
@@ -121,7 +121,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
                   <Activity size={16} className="sm:w-[18px] sm:h-[18px]" color={getAccentColor()} />
                   <span className="font-mono text-xs text-slate-300">ANALYSIS_MODE</span>
               </div>
-              <h2 className="font-display text-2xl sm:text-4xl md:text-6xl text-white font-bold uppercase mb-2 sm:mb-4 drop-shadow-lg">{data.title}</h2>
+              <h2 className="font-display text-xl sm:text-2xl md:text-4xl text-white font-bold uppercase mb-2 sm:mb-4 drop-shadow-lg">{data.title}</h2>
               <div className={`h-0.5 w-20 sm:w-32 ${getTailwindColor().split(' ')[1].replace('border', 'bg')}`} />
           </motion.div>
 
@@ -137,7 +137,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <div className="h-full w-[1px] bg-slate-600 group-hover:bg-slate-400 transition-colors mt-1" />
-                      <p className="font-sans text-xs sm:text-sm md:text-base text-slate-200 group-hover:text-white transition-colors leading-relaxed">
+                      <p className="font-sans text-sm sm:text-base md:text-lg text-slate-200 group-hover:text-white transition-colors leading-relaxed">
                         {item}
                       </p>
                   </motion.div>
@@ -190,8 +190,8 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
             <span className={`inline-block py-1 px-2 sm:px-3 mb-3 sm:mb-6 border ${getTailwindColor()} rounded-full font-mono text-xs`}>
                 SYSTEM_DEFINITION
             </span>
-            <h1 className="font-display text-2xl sm:text-5xl md:text-7xl font-bold text-white mb-2 sm:mb-4 drop-shadow-xl">{data.title}</h1>
-            <p className={`font-mono text-xs sm:text-lg md:text-xl ${getTailwindColor().split(' ')[0]}`}>{data.subtitle}</p>
+            <h1 className="font-display text-2xl sm:text-4xl md:text-6xl font-bold text-white mb-2 sm:mb-4 drop-shadow-xl">{data.title}</h1>
+            <p className={`font-mono text-sm sm:text-base md:text-lg ${getTailwindColor().split(' ')[0]}`}>{data.subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-8 w-full">
@@ -206,7 +206,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
                     <div className={`absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-${data.accent === 'cyan' ? 'neon-cyan' : 'neon-purple'} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                     <div className="flex items-start gap-2 sm:gap-4">
                         <Target className={`mt-1 shrink-0 w-4 h-4 sm:w-5 sm:h-5 ${getTailwindColor().split(' ')[0]}`} />
-                        <p className="font-sans text-xs sm:text-sm md:text-base text-slate-100 font-medium leading-snug">{item}</p>
+                        <p className="font-sans text-sm sm:text-base md:text-lg text-slate-100 font-medium leading-snug">{item}</p>
                     </div>
                 </motion.div>
             ))}
@@ -229,25 +229,25 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
            )}
 
            <motion.div variants={titleVariants} initial="hidden" animate="visible" className="z-10 max-w-4xl relative">
-               <h2 className="font-mono text-sm text-neon-cyan mb-4 tracking-[0.2em] flex items-center gap-2 font-bold">
+               <h2 className="font-mono text-base text-neon-cyan mb-4 tracking-[0.12em] flex items-center gap-2 font-bold">
                    <Globe size={14} />
                    {data.subtitle}
                </h2>
-               <h1 className="font-display text-6xl md:text-8xl font-black text-white uppercase mb-12 leading-[0.9] drop-shadow-2xl">
+                 <h1 className="font-display text-4xl md:text-6xl font-black text-white uppercase mb-8 leading-tight drop-shadow-2xl">
                    {data.title.split(' ').map((word, i) => (
-                       <span key={i} className="block">{word}</span>
+                     <span key={i} className="block">{word}</span>
                    ))}
-               </h1>
+                 </h1>
            </motion.div>
 
-           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="z-10 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 max-w-5xl bg-black/40 backdrop-blur-sm p-4 sm:p-6 rounded-lg border-l-4 border-neon-cyan">
-               {data.content.map((item, i) => (
-                   <motion.div key={i} variants={itemVariants} className="pl-2 py-2">
-                       <p className="font-sans text-sm sm:text-base md:text-lg text-slate-100 font-medium leading-snug">
-                           {item}
-                       </p>
-                   </motion.div>
-               ))}
+             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="z-10 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 max-w-5xl bg-black/40 backdrop-blur-sm p-4 sm:p-6 rounded-lg border-l-4 border-neon-cyan">
+             {data.content.map((item, i) => (
+               <motion.div key={i} variants={itemVariants} className="pl-2 py-2">
+                 <p className="font-sans text-base sm:text-lg md:text-xl text-slate-100 font-medium leading-relaxed">
+                   {item}
+                 </p>
+               </motion.div>
+             ))}
            </motion.div>
       </div>
   );
@@ -264,11 +264,11 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
          )}
 
         <motion.div 
-            initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, ease: "easeInOut" }}
-            className="w-full max-w-5xl border-b border-slate-700 mb-8 pb-4 flex justify-between items-end z-10"
+          initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, ease: "easeInOut" }}
+          className="w-full max-w-5xl border-b border-slate-700 mb-8 pb-4 flex justify-between items-end z-10"
         >
-            <h1 className="font-display text-4xl text-white drop-shadow-md">{data.title}</h1>
-            <span className="font-mono text-neon-cyan text-sm">{data.subtitle}</span>
+          <h1 className="font-display text-3xl md:text-4xl text-white drop-shadow-md">{data.title}</h1>
+          <span className="font-mono text-neon-cyan text-sm">{data.subtitle}</span>
         </motion.div>
 
         <motion.div 
@@ -370,7 +370,7 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
                    initial={{ opacity: 0, y: 10 }} 
                    animate={{ opacity: 1, y: 0 }} 
                    transition={{ delay: 0.7 }}
-                   className={`font-display text-2xl md:text-4xl font-bold ${getTailwindColor().split(' ')[0]} mt-8 pt-6 border-t border-slate-700`}
+                   className={`font-display text-2xl md:text-3xl font-bold ${getTailwindColor().split(' ')[0]} mt-8 pt-6 border-t border-slate-700`}
                  >
                    {question}
                  </motion.h2>
@@ -427,14 +427,14 @@ const Slide: React.FC<SlideProps> = ({ data }) => {
 
                  <motion.p 
                    initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                   className={`font-mono text-sm md:text-base mb-6 ${getTailwindColor().split(' ')[0]} uppercase tracking-[0.2em]`}
+                   className={`font-mono text-base md:text-lg mb-6 ${getTailwindColor().split(' ')[0]} uppercase tracking-[0.12em]`}
                  >
                    {prompt}
                  </motion.p>
 
                  <motion.h1 
                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-                   className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-medium mb-12 leading-tight"
+                   className="font-display text-2xl md:text-3xl lg:text-4xl text-white font-medium mb-10 leading-tight"
                  >
                    {question}
                  </motion.h1>
